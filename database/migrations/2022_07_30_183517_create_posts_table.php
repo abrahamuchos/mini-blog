@@ -16,6 +16,14 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
 
+            // Dos formas de crear un FK
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('user');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade')
+                ->onDelete('cascade');
+
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');
