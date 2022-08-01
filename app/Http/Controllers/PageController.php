@@ -24,6 +24,11 @@ class PageController extends Controller
     }
 
 
+    /**
+     * Get a post, by slug
+     * @param Post $post
+     * @return  Illuminate\Contracts\View;
+     */
     public function post(Post $post)
     {
         return view('post', ['post' => $post]);
