@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -37,9 +38,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'slug' => 'required|unique:posts,slug',
+        ]);
+
         $post = $request->user()->posts()->create([
             'title' => $title = $request->title,
-            'slug' => Str::slug($title),
+            'slug' => $request->slug,
             'body' => $request->body,
         ]);
 
@@ -58,11 +65,28 @@ class PostController extends Controller
         return view('posts.edit', ['post' => $post]);
     }
 
+
+    /**
+     * @param Request $request
+     * @param Post $post
+     *
+     * @return Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            // 'slug' => 'required|unique:posts,slug',
+            'slug' => [
+                'required',
+                Rule::unique('posts', 'slug')->ignore($post->id)
+            ]
+
+        ]);
         $post->update([
-            'title' => $title = $request->title,
-            'slug' => Str::slug($title),
+            'title' => $request->title,
+            'slug' => $request->slug,
             'body' => $request->body,
         ]);
 
