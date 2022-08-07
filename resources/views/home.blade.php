@@ -17,7 +17,11 @@
                         <span>{{ $post->created_at->format('d/m/Y') }}</span>
                     </p>
                     <h2 class="text-lg text-gray-900 mt-2">{{ $post->title }}</h2>
+                    <div class="text-xs text-gray-900 opacity-75 flex items-center gap-1">
+                        {{ $post->user->name }}
+                    </div>
                 </a>
+
 
             @empty
                 <span>Nothing to show</span>

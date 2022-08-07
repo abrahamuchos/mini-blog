@@ -19,9 +19,7 @@ Route::controller(PageController::class)->group(function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::redirect('dashboard', 'posts')->name('dashboard');
 
 Route::resource('posts', PostController::class)->except(['show'])->middleware(['auth']);
 
