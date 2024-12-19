@@ -22,17 +22,6 @@ class PageController extends Controller
         return view('home', ['posts' => $posts]);
     }
 
-
-    // function blog()
-    // {
-    //     // $posts = Post::get();
-    //     // $post = Post::first();
-    //     $posts = Post::latest('id')->paginate();
-
-    //     return view('blog', ['posts' => $posts]);
-    // }
-
-
     /**
      * Get a post, by slug
      * @param Post $post
