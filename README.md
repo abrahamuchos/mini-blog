@@ -47,7 +47,12 @@ $  npm run build
 
 7. Run `php artisan db:seed` to create dummy data and admin user.
 8. Run `php artisan serve` to start the Laravel development server.
-9. 
+</br>
+</br>
+#### User to test:
+email: abraham@mail.com</br>
+password: password
+
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
